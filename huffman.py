@@ -100,7 +100,23 @@ def main():
 
     with open("compressed.txt", "w+") as output:
         print("Compressed file generated as compressed.txt")
+        print("Decoding.......")
         output.write(bitstring)
+
+    bitstring = binary[2:]
+    uncompressed_string = ""
+    code = ""
+    for digit in bitstring:
+        code += digit
+        pos = 0
+        for letter in letter_binary:
+            if code == letter[1]:
+                uncompressed_string += letter_binary[pos][0]
+                code = ""
+            pos += 1
+
+    print("Your UNCOMPRESSED data is:")
+    print(uncompressed_string)
 
 
 if __name__ == "__main__":
